@@ -156,7 +156,7 @@ do
         | odgi sort -i - -o - -O \
         | odgi sort -i - -o - -p sYgYs -k 1000 -G 1 -A -t 16 \
         | odgi view -i - -g >$o.pre.gfa \
-    && time smoothxg -g $o.pre.gfa -w 1000 -j 100 >$o.smooth.gfa.1 \
+    && time smoothxg -g $o.pre.gfa -w 10000 -j 0 >$o.smooth.gfa.1 \
     && odgi build -g $o.smooth.gfa.1 -o - \
         | odgi chop -c 100 -i - -o - \
         | odgi sort -i - -o - -O \
