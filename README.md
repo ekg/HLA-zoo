@@ -1,4 +1,6 @@
-# HLA variation graphs
+# the HLA zoo
+
+_HLA variation graphs_
 
 This is a collection of different renderings of a set of variation graphs made from different versions of the GRCh38 alts.
 
