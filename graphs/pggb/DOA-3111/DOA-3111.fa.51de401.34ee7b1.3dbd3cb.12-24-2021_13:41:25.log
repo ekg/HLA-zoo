@@ -1,0 +1,300 @@
+Starting pggb on Fri Dec 24 01:41:25 PM CET 2021
+
+Command: /home/erik/bin/pggb -i /home/erik/HLA-zoo/seqs/DOA-3111.fa -t 16 -s 1000 -p 70 -n 10 -G 2000,2000,2000,2000 -P 1,7,11,2,33,1 -k 19 -o DOA-3111 -Z
+
+PARAMETERS
+
+general:
+  input-fasta:        /home/erik/HLA-zoo/seqs/DOA-3111.fa
+  output-dir:         DOA-3111
+  resume:             false
+  pigz-compress:      true
+  threads:            16
+wfmash:
+  mapping-tool:       wfmash
+  no-splits:          false
+  segment-length:     1000
+  block-length:       3000
+  no-merge-segments:  false
+  map-pct-id:         70
+  n-mappings:         10
+  mash-kmer:          16
+  exclude-delim:      false
+seqwish:
+  min-match-len:      19
+  transclose-batch:   10000000
+smoothxg:
+  n-haps:             10
+  block_id_min:       .7000
+  path-jump-max:      0
+  edge-jump-max:      0
+  poa-length-target:  2000,2000,2000,2000
+  poa-params:         1,7,11,2,33,1
+  write-maf:          false
+  consensus-prefix:   Consensus_
+  consensus-spec:     false
+  pad-max-depth:      100
+  block-id-min:       .7000
+  block-ratio-min:    0
+  poa_threads:        16
+  poa_padding:        0.03
+odgi:
+  viz:                true
+  layout:             true
+  stats:              false
+gfaffix:
+  normalize:          true
+vg:
+  deconstruct:        false  
+reporting:
+  multiqc:            false
+
+Running pggb
+
+[wfmash::map] Reference = [/home/erik/HLA-zoo/seqs/DOA-3111.fa]
+[wfmash::map] Query = [/home/erik/HLA-zoo/seqs/DOA-3111.fa]
+[wfmash::map] Kmer size = 16
+[wfmash::map] Window size = 1
+[wfmash::map] Segment length = 1000 (read split allowed)
+[wfmash::map] Block length min = 3000
+[wfmash::map] Alphabet = DNA
+[wfmash::map] Percentage identity threshold = 70%
+[wfmash::map] Mapping output file = /home/erik/HLA-zoo/graphs/pggb/wfmash-ai1nCV
+[wfmash::map] Filter mode = 1 (1 = map, 2 = one-to-one, 3 = none)
+[wfmash::map] Execution threads  = 16
+[wfmash::skch::Sketch::build] minimizers picked from reference = 54157
+[wfmash::skch::Sketch::index] unique minimizers = 6030
+[wfmash::skch::Sketch::computeFreqHist] Frequency histogram of minimizers = (1, 222) ... (20, 2)
+[wfmash::skch::Sketch::computeFreqHist] With threshold 0.001%, consider all minimizers during lookup.
+[wfmash::map] time spent computing the reference index: 0.00432391 sec
+[wfmash::skch::Map::mapQuery] mapped 100.00% @ 2.17e+05 bp/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[wfmash::skch::Map::mapQuery] count of mapped reads = 10, reads qualified for mapping = 10, total input reads = 10, total input bp = 54307
+[wfmash::map] time spent mapping the query: 2.52e-01 sec
+[wfmash::map] mapping results saved in: /home/erik/HLA-zoo/graphs/pggb/wfmash-ai1nCV
+[wfmash::align] Reference = [/home/erik/HLA-zoo/seqs/DOA-3111.fa]
+[wfmash::align] Query = [/home/erik/HLA-zoo/seqs/DOA-3111.fa]
+[wfmash::align] Mapping file = /home/erik/HLA-zoo/graphs/pggb/wfmash-ai1nCV
+[wfmash::align] Alignment identity cutoff = 7.00e-01%
+[wfmash::align] Alignment output file = /dev/stdout
+[wfmash::align] time spent loading the reference index: 4.09e-04 sec
+[wfmash::align::computeAlignments] aligned 100.00% @ 1.28e+06 bp/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[wfmash::align::computeAlignments] count of mapped reads = 10, total aligned bp = 320406
+[wfmash::align] time spent computing the alignment: 2.52e-01 sec
+[wfmash::align] alignment results saved in: /dev/stdout
+wfmash -X -s 1000 -l 3000 -p 70 -n 10 -k 16 -t 16 /home/erik/HLA-zoo/seqs/DOA-3111.fa /home/erik/HLA-zoo/seqs/DOA-3111.fa
+0.52s user 0.04s system 110% cpu 0.51s total 36088Kb max memory
+[seqwish::seqidx] 0.000 indexing sequences
+[seqwish::seqidx] 0.009 index built
+[seqwish::alignments] 0.009 processing alignments
+[seqwish::alignments] 0.013 indexing
+[seqwish::alignments] 0.017 index built
+[seqwish::transclosure] 0.019 computing transitive closures
+[seqwish::transclosure] 0.022 0.00% 0-54307 overlap_collect
+[seqwish::transclosure] 0.079 0.00% 0-54307 rank_build
+[seqwish::transclosure] 0.080 0.00% 0-54307 parallel_union_find
+[seqwish::transclosure] 0.088 0.00% 0-54307 dset_write
+[seqwish::transclosure] 0.089 0.00% 0-54307 dset_compression
+[seqwish::transclosure] 0.091 0.00% 0-54307 dset_sort
+[seqwish::transclosure] 0.091 0.00% 0-54307 dset_invert
+[seqwish::transclosure] 0.092 0.00% 0-54307 graph_emission
+[seqwish::transclosure] 0.097 100.00% building node_iitree and path_iitree indexes
+[seqwish::transclosure] 0.103 100.00% done
+[seqwish::transclosure] 0.103 done with transitive closures
+[seqwish::compact] 0.103 compacting nodes
+[seqwish::compact] 0.104 done compacting
+[seqwish::compact] 0.104 built node index
+[seqwish::links] 0.104 finding graph links
+[seqwish::links] 0.108 links derived
+[seqwish::gfa] 0.108 writing graph
+[seqwish::gfa] 0.110 done
+seqwish -t 16 -s /home/erik/HLA-zoo/seqs/DOA-3111.fa -p DOA-3111/DOA-3111.fa.51de401.wfmash.paf -k 19 -g DOA-3111/DOA-3111.fa.51de401.34ee7b1.seqwish.gfa -B 10000000 -P
+0.06s user 0.04s system 102% cpu 0.11s total 31836Kb max memory
+[smoothxg::main] loading graph
+[smoothxg::main] prepping graph for smoothing
+[odgi::gfa_to_handle] building nodes: 100.00% @ 1.03e+06/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::gfa_to_handle] building edges: 65.25% @ 1.63e+06/s elapsed: 00:00:00:00 remain: 00:00:00:00[odgi::gfa_to_handle] building edges: 100.00% @ 9.42e+02/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::gfa_to_handle] building paths: 20.00% @ 1.11e+03/s elapsed: 00:00:00:00 remain: 00:00:00:00[odgi::gfa_to_handle] building paths: 100.00% @ 3.97e+01/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::prep] building path index
+[smoothxg::prep] sorting graph
+[odgi::path_linear_sgd] calculating linear SGD schedule (1.35e-04 1.00e+00 100 0 1.00e-02)
+[odgi::path_linear_sgd] calculating zetas for 86 zipf distributions
+[odgi::path_linear_sgd] 1D path-guided SGD:  0.27% @ 2.20e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00[odgi::path_linear_sgd] 1D path-guided SGD: 100.00% @ 3.41e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::groom] grooming: 100.00% @ 7.14e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::groom] organizing handles: 100.00% @ 2.09e+06/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::groom] flipped 1 handles
+[odgi::topological_order] sorting nodes: 100.00% @ 4.25e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::prep] chopping graph to 100
+[odgi::chop] 20 node(s) to chop.
+[smoothxg::prep] writing graph DOA-3111/DOA-3111.fa.51de401.34ee7b1.seqwish.gfa.prep.gfa
+[smoothxg::main] building xg index
+[smoothxg::smoothable_blocks] computing blocks
+[smoothxg::smoothable_blocks] computing blocks for 152 handles: 19.74% @ 7.29e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00[smoothxg::smoothable_blocks] computing blocks for 152 handles: 100.00% @ 6.07e+02/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::break_and_split_blocks] cutting blocks that contain sequences longer than max-poa-length (4000) and depth >= 0
+[smoothxg::break_and_split_blocks] splitting 3 blocks at identity 0.700 (WFA-based clustering) and at estimated-identity 0.700 (mash-based clustering)
+[smoothxg::break_and_split_blocks] cutting and splitting 3 blocks: 100.00% @ 7.08e+02/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::break_and_split_blocks] cut 0 blocks of which 0 had repeats
+[smoothxg::break_and_split_blocks] split 0 blocks
+[smoothxg::smooth_and_lace] applying global abPOA to 3 blocks: 33.33% @ 6.63e+00/s elapsed: 00:00:00:00 remain: 00:00:00:00[smoothxg::smooth_and_lace] applying global abPOA to 3 blocks: 100.00% @ 7.47e+00/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] flipping 0 block graphs: 100.00% @ 3.00e+02/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] sorting path_mappings
+[smoothxg::smooth_and_lace] adding edges from 3 graphs: 100.00% @ 3.14e+04/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] embedding 30 path fragments: 100.00% @ 5.65e+04/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] validating 10 path sequences: 100.00% @ 4.25e+04/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] adding nodes from 3 graphs: 100.00% @ 2.92e+03/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] walking edges in 10 paths: 100.00% @ 8.48e+04/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::main] unchopping smoothed graph
+[odgi::unchop] unchopped 0 nodes into 0 new nodes.
+[smoothxg::main] smoothed graph length 5471bp in 119 nodes
+[smoothxg::main] writing smoothed graph to DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.1.gfa
+smoothxg -t 16 -T 16 -g DOA-3111/DOA-3111.fa.51de401.34ee7b1.seqwish.gfa -w 20000 -X 100 -I .7000 -R 0 -j 0 -e 0 -l 2000 -p 1,7,11,2,33,1 -O 0.03 -Y 1000 -d 0 -D 0 -V -o DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.1.gfa
+3.26s user 0.10s system 224% cpu 1.49s total 148548Kb max memory
+[smoothxg::main] loading graph
+[smoothxg::main] prepping graph for smoothing
+[odgi::gfa_to_handle] building nodes: 100.00% @ 1.25e+06/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::gfa_to_handle] building edges: 100.00% @ 1.91e+06/s elapsed: 00:00:00:00 remain: 00:00:00:00[odgi::gfa_to_handle] building edges: 100.00% @ 9.24e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::gfa_to_handle] building paths: 20.00% @ 2.96e+03/s elapsed: 00:00:00:00 remain: 00:00:00:00[odgi::gfa_to_handle] building paths: 100.00% @ 3.99e+01/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::prep] building path index
+[smoothxg::prep] sorting graph
+[odgi::path_linear_sgd] calculating linear SGD schedule (1.56e-04 1.00e+00 100 0 1.00e-02)
+[odgi::path_linear_sgd] calculating zetas for 80 zipf distributions
+[odgi::path_linear_sgd] 1D path-guided SGD:  0.22% @ 1.72e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00[odgi::path_linear_sgd] 1D path-guided SGD: 100.00% @ 3.17e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::groom] grooming: 100.00% @ 1.08e+06/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::groom] organizing handles: 100.00% @ 2.38e+06/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::groom] flipped 0 handles
+[odgi::topological_order] sorting nodes: 100.00% @ 4.29e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::prep] chopping graph to 100
+[odgi::chop] 20 node(s) to chop.
+[smoothxg::prep] writing graph DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.1.gfa.prep.gfa
+[smoothxg::main] building xg index
+[smoothxg::smoothable_blocks] computing blocks
+[smoothxg::smoothable_blocks] computing blocks for 153 handles: 40.52% @ 3.37e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00[smoothxg::smoothable_blocks] computing blocks for 153 handles: 100.00% @ 6.10e+02/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::break_and_split_blocks] cutting blocks that contain sequences longer than max-poa-length (4000) and depth >= 0
+[smoothxg::break_and_split_blocks] splitting 3 blocks at identity 0.700 (WFA-based clustering) and at estimated-identity 0.700 (mash-based clustering)
+[smoothxg::break_and_split_blocks] cutting and splitting 3 blocks: 100.00% @ 5.66e+02/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::break_and_split_blocks] cut 0 blocks of which 0 had repeats
+[smoothxg::break_and_split_blocks] split 0 blocks
+[smoothxg::smooth_and_lace] applying global abPOA to 3 blocks: 33.33% @ 6.80e+00/s elapsed: 00:00:00:00 remain: 00:00:00:00[smoothxg::smooth_and_lace] applying global abPOA to 3 blocks: 100.00% @ 7.55e+00/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] flipping 0 block graphs: 100.00% @ 3.36e+02/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] sorting path_mappings
+[smoothxg::smooth_and_lace] adding edges from 3 graphs: 100.00% @ 2.88e+04/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] embedding 30 path fragments: 100.00% @ 6.70e+04/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] validating 10 path sequences: 100.00% @ 6.33e+04/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] adding nodes from 3 graphs: 100.00% @ 3.33e+03/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] walking edges in 10 paths: 100.00% @ 8.46e+04/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::main] unchopping smoothed graph
+[odgi::unchop] unchopped 0 nodes into 0 new nodes.
+[smoothxg::main] smoothed graph length 5471bp in 119 nodes
+[smoothxg::main] writing smoothed graph to DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.2.gfa
+smoothxg -t 16 -T 16 -g DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.1.gfa -w 20000 -X 100 -I .7000 -R 0 -j 0 -e 0 -l 2000 -p 1,7,11,2,33,1 -O 0.03 -Y 1000 -d 0 -D 0 -V -o DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.2.gfa
+3.22s user 0.09s system 266% cpu 1.24s total 148480Kb max memory
+[smoothxg::main] loading graph
+[smoothxg::main] prepping graph for smoothing
+[odgi::gfa_to_handle] building nodes: 100.00% @ 1.24e+06/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::gfa_to_handle] building edges: 89.24% @ 1.84e+06/s elapsed: 00:00:00:00 remain: 00:00:00:00[odgi::gfa_to_handle] building edges: 100.00% @ 1.01e+06/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::gfa_to_handle] building paths: 10.00% @ 1.64e+03/s elapsed: 00:00:00:00 remain: 00:00:00:00[odgi::gfa_to_handle] building paths: 100.00% @ 3.99e+01/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::prep] building path index
+[smoothxg::prep] sorting graph
+[odgi::path_linear_sgd] calculating linear SGD schedule (1.56e-04 1.00e+00 100 0 1.00e-02)
+[odgi::path_linear_sgd] calculating zetas for 80 zipf distributions
+[odgi::path_linear_sgd] 1D path-guided SGD:  0.06% @ 4.44e+03/s elapsed: 00:00:00:00 remain: 00:00:00:17[odgi::path_linear_sgd] 1D path-guided SGD: 100.00% @ 3.17e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::groom] grooming: 100.00% @ 1.39e+06/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::groom] organizing handles: 100.00% @ 2.26e+06/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::groom] flipped 0 handles
+[odgi::topological_order] sorting nodes: 100.00% @ 4.28e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::prep] chopping graph to 100
+[odgi::chop] 20 node(s) to chop.
+[smoothxg::prep] writing graph DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.2.gfa.prep.gfa
+[smoothxg::main] building xg index
+[smoothxg::smoothable_blocks] computing blocks
+[smoothxg::smoothable_blocks] computing blocks for 153 handles: 28.76% @ 5.68e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00[smoothxg::smoothable_blocks] computing blocks for 153 handles: 100.00% @ 6.11e+02/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::break_and_split_blocks] cutting blocks that contain sequences longer than max-poa-length (4000) and depth >= 0
+[smoothxg::break_and_split_blocks] splitting 3 blocks at identity 0.700 (WFA-based clustering) and at estimated-identity 0.700 (mash-based clustering)
+[smoothxg::break_and_split_blocks] cutting and splitting 3 blocks: 100.00% @ 8.15e+02/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::break_and_split_blocks] cut 0 blocks of which 0 had repeats
+[smoothxg::break_and_split_blocks] split 0 blocks
+[smoothxg::smooth_and_lace] applying global abPOA to 3 blocks: 33.33% @ 7.01e+00/s elapsed: 00:00:00:00 remain: 00:00:00:00[smoothxg::smooth_and_lace] applying global abPOA to 3 blocks: 100.00% @ 7.63e+00/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] flipping 0 block graphs: 100.00% @ 6.45e+02/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] sorting path_mappings
+[smoothxg::smooth_and_lace] adding edges from 3 graphs: 100.00% @ 2.92e+04/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] embedding 30 path fragments: 100.00% @ 6.98e+04/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] validating 10 path sequences: 100.00% @ 4.28e+04/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] adding nodes from 3 graphs: 100.00% @ 3.19e+03/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] walking edges in 10 paths: 100.00% @ 7.41e+04/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::main] unchopping smoothed graph
+[odgi::unchop] unchopped 0 nodes into 0 new nodes.
+[smoothxg::main] smoothed graph length 5471bp in 119 nodes
+[smoothxg::main] writing smoothed graph to DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.3.gfa
+smoothxg -t 16 -T 16 -g DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.2.gfa -w 20000 -X 100 -I .7000 -R 0 -j 0 -e 0 -l 2000 -p 1,7,11,2,33,1 -O 0.03 -Y 1000 -d 0 -D 0 -V -o DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.3.gfa
+3.24s user 0.07s system 270% cpu 1.22s total 147972Kb max memory
+[smoothxg::main] loading graph
+[smoothxg::main] prepping graph for smoothing
+[odgi::gfa_to_handle] building nodes: 100.00% @ 6.74e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00[odgi::gfa_to_handle] building nodes: 100.00% @ 4.53e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::gfa_to_handle] building edges: 100.00% @ 1.96e+06/s elapsed: 00:00:00:00 remain: 00:00:00:00[odgi::gfa_to_handle] building edges: 100.00% @ 8.81e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::gfa_to_handle] building paths: 30.00% @ 6.60e+03/s elapsed: 00:00:00:00 remain: 00:00:00:00[odgi::gfa_to_handle] building paths: 100.00% @ 3.99e+01/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::prep] building path index
+[smoothxg::prep] sorting graph
+[odgi::path_linear_sgd] calculating linear SGD schedule (1.56e-04 1.00e+00 100 0 1.00e-02)
+[odgi::path_linear_sgd] calculating zetas for 80 zipf distributions
+[odgi::path_linear_sgd] 1D path-guided SGD:  0.05% @ 1.08e+04/s elapsed: 00:00:00:00 remain: 00:00:00:07[odgi::path_linear_sgd] 1D path-guided SGD: 100.00% @ 3.17e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::groom] grooming: 100.00% @ 7.95e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::groom] organizing handles: 100.00% @ 3.43e+06/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::groom] flipped 0 handles
+[odgi::topological_order] sorting nodes: 100.00% @ 5.39e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::prep] chopping graph to 100
+[odgi::chop] 20 node(s) to chop.
+[smoothxg::prep] writing graph DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.3.gfa.prep.gfa
+[smoothxg::main] building xg index
+[smoothxg::smoothable_blocks] computing blocks
+[smoothxg::smoothable_blocks] computing blocks for 153 handles: 40.52% @ 3.41e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00[smoothxg::smoothable_blocks] computing blocks for 153 handles: 100.00% @ 6.11e+02/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::break_and_split_blocks] cutting blocks that contain sequences longer than max-poa-length (4000) and depth >= 0
+[smoothxg::break_and_split_blocks] splitting 3 blocks at identity 0.700 (WFA-based clustering) and at estimated-identity 0.700 (mash-based clustering)
+[smoothxg::break_and_split_blocks] cutting and splitting 3 blocks: 100.00% @ 6.48e+02/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::break_and_split_blocks] cut 0 blocks of which 0 had repeats
+[smoothxg::break_and_split_blocks] split 0 blocks
+[smoothxg::smooth_and_lace] applying global abPOA to 3 blocks: 33.33% @ 6.83e+00/s elapsed: 00:00:00:00 remain: 00:00:00:00[smoothxg::smooth_and_lace] applying global abPOA to 3 blocks: 100.00% @ 7.56e+00/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] flipping 0 block graphs: 100.00% @ 4.12e+03/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] sorting path_mappings
+[smoothxg::smooth_and_lace] adding edges from 3 graphs: 100.00% @ 3.54e+04/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] embedding 30 path fragments: 100.00% @ 7.03e+04/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] validating 10 path sequences: 100.00% @ 4.55e+04/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] adding nodes from 3 graphs: 100.00% @ 3.41e+03/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::smooth_and_lace] walking edges in 10 paths: 100.00% @ 8.79e+04/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[smoothxg::main] unchopping smoothed graph
+[odgi::unchop] unchopped 0 nodes into 0 new nodes.
+[smoothxg::main] smoothed graph length 5471bp in 119 nodes
+[smoothxg::main] writing smoothed graph to DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.gfa
+smoothxg -t 16 -T 16 -g DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.3.gfa -w 20000 -X 100 -I .7000 -R 0 -j 0 -e 0 -l 2000 -p 1,7,11,2,33,1 -O 0.03 -Y 1000 -d 0 -D 0 -Q Consensus_ -V -o DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.gfa
+2.97s user 0.11s system 251% cpu 1.22s total 147988Kb max memory
+[odgi::gfa_to_handle] building nodes: 100.00% @ 1.27e+06/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::gfa_to_handle] building edges: 27.22% @ 1.09e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00[odgi::gfa_to_handle] building edges: 100.00% @ 6.31e+02/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::gfa_to_handle] building paths: 10.00% @ 1.28e+03/s elapsed: 00:00:00:00 remain: 00:00:00:00[odgi::gfa_to_handle] building paths: 100.00% @ 3.98e+01/s elapsed: 00:00:00:00 remain: 00:00:00:00
+odgi build -t 16 -P -g DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.fix.gfa -o - -O
+0.00s user 0.00s system 1% cpu 0.50s total 9556Kb max memory
+path_sgd_zipf_space_max: 100
+path_sgd_zipf_max_number_of_distributions: 101
+[odgi::path_linear_sgd] calculating linear SGD schedule (0.00015625 1 100 0 0.01)
+[odgi::path_linear_sgd] calculating zetas for 102 zipf distributions
+[odgi::path_linear_sgd] 1D path-guided SGD:  0.12% @ 1.74e+04/s elapsed: 00:00:00:00 remain: 00:00:00:04[odgi::path_linear_sgd] 1D path-guided SGD: 100.00% @ 3.16e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::groom] grooming: 100.00% @ 1.40e+06/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::groom] organizing handles: 100.00% @ 2.32e+06/s elapsed: 00:00:00:00 remain: 00:00:00:00
+[odgi::groom] flipped 0 handles
+[odgi::topological_order] sorting nodes: 100.00% @ 4.33e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00
+odgi sort -P -p Ygs -t 16 -i - -o DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.fix.og
+1.85s user 0.01s system 241% cpu 0.77s total 18072Kb max memory
+odgi view -i DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.fix.og -g
+0.00s user 0.00s system 100% cpu 0.00s total 8732Kb max memory
+odgi viz -i DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.fix.og -o DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.fix.og.viz_multiqc.png -x 1500 -y 500 -a 10 -I Consensus_
+0.01s user 0.00s system 100% cpu 0.01s total 14172Kb max memory
+odgi viz -i DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.fix.og -o DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.fix.og.viz_pos_multiqc.png -x 1500 -y 500 -a 10 -u -d -I Consensus_
+0.01s user 0.00s system 93% cpu 0.01s total 14468Kb max memory
+odgi viz -i DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.fix.og -o DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.fix.og.viz_depth_multiqc.png -x 1500 -y 500 -a 10 -m -I Consensus_
+0.01s user 0.00s system 93% cpu 0.01s total 14324Kb max memory
+odgi viz -i DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.fix.og -o DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.fix.og.viz_inv_multiqc.png -x 1500 -y 500 -a 10 -z -I Consensus_
+0.01s user 0.00s system 93% cpu 0.01s total 14112Kb max memory
+[odgi::path_linear_sgd_layout] 2D path-guided SGD:  0.02% @ 1.79e+02/s elapsed: 00:00:00:00 remain: 00:00:22:14[odgi::path_linear_sgd_layout] 2D path-guided SGD: 100.00% @ 9.33e+05/s elapsed: 00:00:00:00 remain: 00:00:00:00
+odgi layout -i DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.fix.og -o DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.fix.og.lay -T DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.fix.og.lay.tsv -t 16 -P
+0.77s user 0.00s system 287% cpu 0.27s total 18412Kb max memory
+odgi draw -i DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.fix.og -c DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.fix.og.lay -p DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.fix.og.lay.draw.png -H 1000
+0.75s user 0.06s system 115% cpu 0.70s total 213156Kb max memory
+odgi draw -i DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.fix.og -c DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.fix.og.lay -p DOA-3111/DOA-3111.fa.51de401.34ee7b1.3dbd3cb.smooth.fix.og.lay.draw_multiqc.png -C -w 20 -H 1000
+0.59s user 0.09s system 147% cpu 0.46s total 146352Kb max memory
