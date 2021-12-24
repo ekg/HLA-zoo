@@ -136,34 +136,8 @@ do
 done
 ```
 
-### smoothing tangles with `smoothxg`
+### `pggb` graphs
 
-Graphs produced by these methods (aside from spoa) can have local complex structures that frustrate many kinds of downstream analyses.
-We can flatten these tangles using [`smoothxg`](https://github.com/ekg/smoothxg).
-These often result from inducing a graph over a region of low-complexity sequence where many alignment descriptions are equivalent and differentially preferred based on aspects of the aligned sequences and their relative orientation.
-To mitigate these issues, we can apply "smoothing" to the graph, which basically collects bins of nodes up to a given amount of embedded path sequence and then subjects these to spoa.
-The resulting graphs are then "laced" together by walking back through the original paths.
-
-This method is somewhat experimental, and we need to modify the input graph in a number of ways (sorting it and chopping the nodes to a short length) to ensure that it works well (sorted) and without memory exhaustion (in spoa, due to the quadratic costs associated with aligning very long sequences).
-
-```
-find graphs/seqwish/mashmap/*sort.gfa | while read f
-do
-    echo $f
-    o=graphs/smoothxg/seqwish/mashmap/$(basename $f .sort.gfa)
-    odgi build -g $f -o - \
-        | odgi chop -c 100 -i - -o - \
-        | odgi sort -i - -o - -O \
-        | odgi sort -i - -o - -p sYgYs -k 1000 -G 1 -A -t 16 \
-        | odgi view -i - -g >$o.pre.gfa \
-    && time smoothxg -g $o.pre.gfa -w 10000 -j 0 >$o.smooth.gfa.1 \
-    && odgi build -g $o.smooth.gfa.1 -o - \
-        | odgi chop -c 100 -i - -o - \
-        | odgi sort -i - -o - -O \
-        | odgi sort -i - -o - -p sYgYs -k 1000 -G 1 -A -t 16 \
-        | odgi view -i - -g >$o.smooth.gfa
-    rm -f $o.smooth.gfa.1
-done
-```
-
-The same can be repeated for `minimap2`-based `seqwish` graphs and the `vg msga` graphs.
+The PanGenome Graph Builder, [pggb](https://github.com/pangenome/pggb), combines `wfmash`, `seqwish`, and `smoothxg` to build a normalized graph in which the local sequence representation is partially ordered.
+The graph itself can represent any kind of variation detectable by the alignment parameters.
+Instructions for rebuilding these graphs are in `graphs/pggb/README.md`.
